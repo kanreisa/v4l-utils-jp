@@ -1090,6 +1090,8 @@ static void add_update_nit_isdbs(struct dvb_table_nit *nit,
 			     dvbs_polarization[d->polarization]);
 	dvb_store_entry_prop(new, DTV_SYMBOL_RATE,
 			     d->symbol_rate);
+	dvb_store_entry_prop(new, DTV_STREAM_ID,
+			     ts_id);
 }
 
 
