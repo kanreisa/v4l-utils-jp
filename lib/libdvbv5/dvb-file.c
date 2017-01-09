@@ -1025,6 +1025,7 @@ static void get_pmt_descriptors(struct dvb_entry *entry,
 		case 0x01: /* ISO/IEC 11172-2 Video */
 		case 0x02: /* H.262, ISO/IEC 13818-2 or ISO/IEC 11172-2 video */
 		case 0x1b: /* H.264 AVC */
+		case 0x24: /* H.265 HEVC */
 			entry->video_pid = realloc(entry->video_pid,
 						   sizeof(*entry->video_pid) *
 						   (video_len + 1));
