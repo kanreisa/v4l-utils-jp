@@ -723,6 +723,24 @@ static void dvb_setup_delsys_default(struct dvb_v5_fe_parms *p)
 	uint32_t cc;
 
 	switch (p->current_sys) {
+	case SYS_DVBC_ANNEX_A:
+	case SYS_DVBC_ANNEX_B:
+	case SYS_DVBC_ANNEX_C:
+	case SYS_DVBS2:
+		cc = COUNTRY_UNKNOWN;
+		dvb_fe_retrieve_parm(p, DTV_COUNTRY_CODE, &cc);
+		if (cc == COUNTRY_UNKNOWN && parms->country != COUNTRY_UNKNOWN) {
+			cc = parms->country;
+			dvb_fe_store_parm(p, DTV_COUNTRY_CODE, cc);
+		}
+		switch (cc) {
+		case JP:
+			p->default_charset = "arib-std-b24";
+			break;
+		default:
+			break;
+		}
+		break;
 	case SYS_ISDBT:
 		/* Set country code. */
 		/* if the default country is not known, fallback to BR */
